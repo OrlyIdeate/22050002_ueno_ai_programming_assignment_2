@@ -1,7 +1,7 @@
 import streamlit as st
 import math
 from utils.API.openlibrary import fetch_books_with_details
-from utils.CRUD import add_comment, get_comments, update_comment, delete_comment
+from utils.CRUD import add_comment, get_comments, delete_comment
 
 
 st.title("書籍検索アプリ")
