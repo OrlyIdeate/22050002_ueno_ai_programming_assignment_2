@@ -1,6 +1,6 @@
 import streamlit as st
 import math
-from utils.API.openlibrary import fetch_books_with_details
+from utils.openlibrary import fetch_books_with_details
 from utils.CRUD import add_comment, get_comments, delete_comment
 
 
