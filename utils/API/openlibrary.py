@@ -1,7 +1,7 @@
 import requests
 
 
-def search_keyword(keyword, search_type="book", limit=100):
+def search_keyword(keyword, limit=100):
     """
     書籍または著者をキーワードで検索する関数
 
@@ -13,14 +13,11 @@ def search_keyword(keyword, search_type="book", limit=100):
     Returns:
         dict: 検索結果
     """
-    if search_type == "book":
+    if keyword != "":
         url = f"https://openlibrary.org/search.json"
         params = {"q": keyword, "limit": limit}
-    elif search_type == "author":
-        url = f"https://openlibrary.org/search/authors.json"
-        params = {"q": keyword, "limit": limit}
     else:
-        raise ValueError("search_type must be 'book' or 'author'")
+        return {"docs": []}
 
     response = requests.get(url, params=params)
     response.raise_for_status()
