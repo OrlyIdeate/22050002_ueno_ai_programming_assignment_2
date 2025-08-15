@@ -36,7 +36,7 @@ def get_book_cover(cover_id, size="L"):
         str: カバー画像のURL
     """
     if cover_id is None:
-        return "./img/no_image.jpg"
+        return "./img/app/no_image.jpg"
     return f"https://covers.openlibrary.org/b/id/{cover_id}-{size}.jpg"
 
 
