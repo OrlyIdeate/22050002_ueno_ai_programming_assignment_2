@@ -4,7 +4,8 @@ from utils.openlibrary import fetch_books_with_details
 from utils.CRUD import add_comment, get_comments, delete_comment
 
 
-st.title("書籍検索アプリ")
+st.title("📚️Books Comment")
+st.subheader("書籍情報を取得＆コメントを記録するアプリ")
 
 query = st.text_input("書籍名や著者名を入力してください:")
 col1, col2 = st.columns([9, 1])
