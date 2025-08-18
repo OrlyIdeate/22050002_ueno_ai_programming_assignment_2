@@ -65,3 +65,50 @@ def fetch_books_with_details(keyword):
         books.append(book_details)
 
     return books
+
+
+def fetch_book_by_olid(olid):
+    """
+    OLIDを使用して単一の書籍詳細を取得する関数
+
+    Args:
+        olid (str): Open Library ID
+
+    Returns:
+        dict: 書籍詳細情報 (辞書形式) またはNone
+    """
+    try:
+        url = f"https://openlibrary.org/works/{olid}.json"
+        response = requests.get(url)
+        response.raise_for_status()
+        book_data = response.json()
+        
+        # 著者情報を取得
+        authors = []
+        if "authors" in book_data:
+            for author in book_data["authors"]:
+                if "author" in author:
+                    author_key = author["author"]["key"]
+                    author_url = f"https://openlibrary.org{author_key}.json"
+                    author_response = requests.get(author_url)
+                    if author_response.status_code == 200:
+                        author_data = author_response.json()
+                        authors.append(author_data.get("name", "著者不明"))
+        
+        # カバー画像IDを取得
+        cover_id = None
+        if "covers" in book_data and book_data["covers"]:
+            cover_id = book_data["covers"][0]
+        
+        book_details = {
+            "cover_url": get_book_cover(cover_id),
+            "title": book_data.get("title", "タイトルなし"),
+            "author": authors[0] if authors else "著者不明",
+            "publish_year": book_data.get("first_publish_date", "不明"),
+            "olid": olid
+        }
+        
+        return book_details
+    except Exception as e:
+        print(f"Error fetching book with OLID {olid}: {e}")
+        return None
