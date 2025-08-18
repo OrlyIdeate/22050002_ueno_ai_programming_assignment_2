@@ -43,3 +43,14 @@ def delete_comment(comment_id):
         writer = csv.DictWriter(file, fieldnames=["id", "olid", "comment"])
         writer.writeheader()
         writer.writerows(rows)
+
+def get_books_with_comments():
+    """コメントが付いている書籍のOLIDリストを取得する"""
+    initialize_comments_file()
+    olids = set()
+    with open(COMMENTS_FILE, mode="r", encoding="utf-8") as file:
+        reader = csv.DictReader(file)
+        for row in reader:
+            if row["olid"]:  # OLIDが空でない場合
+                olids.add(row["olid"])
+    return list(olids)
