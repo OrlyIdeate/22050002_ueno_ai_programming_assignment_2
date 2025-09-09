@@ -26,6 +26,11 @@
 | 言語 | Python |
 | データ保存形式 | CSV |
 
+### 現状の課題と今後の展望
+現在の機能を踏まえたサービスの立ち位置見直しと独自性を加えた追加実装案についての文書を
+[improvement.md](https://github.com/OrlyIdeate/22050002_ueno_ai_programming_assignment_2/blob/main/improvement.md)
+にまとめています。
+
 
 
 ## 使用しているAPI
